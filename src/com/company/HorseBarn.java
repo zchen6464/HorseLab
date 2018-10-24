@@ -1,6 +1,5 @@
 package com.company;
 
-import java.lang.reflect.Array;
 
 public class HorseBarn {
     private Horse[] spaces;
@@ -22,13 +21,28 @@ public class HorseBarn {
         return -1;
     }
 
+    public String toString()
+    {
+        String barnString = "";
+        for(int i = 0; i < this.spaces.length; i ++)
+        {
+            barnString += i + ". " + this.spaces[i].getName() + ", " + this.spaces[i].getWeight();
+        }
+        return barnString;
+    }
+
     public void consolidate()
     {
         for (int i = 0; i < this.spaces.length-1; i ++)
         {
             if (this.spaces[i] == null)
             {
-
+                for (int j = i+1; j < this.spaces.length; j++)
+                {
+                    this.spaces[i] = this.spaces[j];
+                    this.spaces[j] = null;
+                    j = this.spaces.length;
+                }
             }
         }
     }
